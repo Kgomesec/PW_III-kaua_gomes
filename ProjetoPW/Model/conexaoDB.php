@@ -1,25 +1,40 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php
+            Class ConexãoDB {
+                private $serverName = "localhost";
+                private $userName = "root";
+                private $password = "";
+                private $dbNome = "projeto_final";
+            
 
-Class ConexaoDB {
-    private $serverName = "localhost";
-    private $userName = "root";
-    private $password = "";
-    private $dbName = "projeto_final";
+                public function conectar() {
 
-    public function conectar() {
-        $conn = new mysqli($this->serverName, $this->userName, $this->password, $this->dbName);
-        
-        if ($conn->connect_error) {
-            die("Conexão falhou: " . $conn->connect_error);
-        }
+                //Cria conexão
+                $conn = new mysqli($this->serverName, $this->userName, $this->password,
+                $this->dbName);
 
-        echo "Conexão realizada com sucesso!";
+                //Verifica se houve erro na conexão
+                    if ($conn->connect_error) {
+                    die("Falha na conexão: " . $conn->connect_error);
+                    }
 
-        return $conn;
-    }
-}
+                //Mensagem de sucesso
+                echo "Conexão realizada com sucesso!";
 
-$conexao = new ConexaoDB();
-$conexao->conectar();
 
-?>
+                return $conn;
+                }
+            }
+            //Aqui você instancia a classe e chama o método
+            $conexao = new ConexaoDB();
+            $conexao->conectar();
+    ?>
+</body>
+</html>
